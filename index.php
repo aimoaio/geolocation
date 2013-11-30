@@ -49,6 +49,7 @@ function initialize() {
 
 function codeLatLng() {
   var input = document.getElementById('latlng').value;
+  var address = document.getElementById('address');
   var latlngStr = input.split(',', 2);
   var lat = parseFloat(latlngStr[0]);
   var lng = parseFloat(latlngStr[1]);
@@ -62,6 +63,7 @@ function codeLatLng() {
             map: map
         });
         infowindow.setContent(results[1].formatted_address);
+        address.innerHTML="The address will go here";
         infowindow.open(map, marker);
       } else {
         alert('No results found');
@@ -70,6 +72,7 @@ function codeLatLng() {
       alert('Geocoder failed due to: ' + status);
     }
   });
+  
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
@@ -109,8 +112,11 @@ google.maps.event.addDomListener(window, 'load', initialize);
      <div id="panel">
       <input id="latlng" type="text" value="40.714224,-73.961452">
       <input type="button" value="Reverse Geocode" onclick="codeLatLng()">
+      
     </div>
     <div id="map-canvas"></div>
+    <p> Your address is: </p>
+    <p id="address"> Address </p>
 
     </body>
     
