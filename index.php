@@ -49,7 +49,7 @@ function initialize() {
 
 function codeLatLng() {
   var input = document.getElementById('latlng').value;
-  var address = document.getElementById('address');
+  var address2 = document.getElementById('address');
   var latlngStr = input.split(',', 2);
   var lat = parseFloat(latlngStr[0]);
   var lng = parseFloat(latlngStr[1]);
@@ -63,7 +63,8 @@ function codeLatLng() {
             map: map
         });
         infowindow.setContent(results[1].formatted_address);
-        address.innerHTML="The address will go here";
+        address2 = results[0].formatted_address;
+        address.innerHTML=address2;
         infowindow.open(map, marker);
       } else {
         alert('No results found');
