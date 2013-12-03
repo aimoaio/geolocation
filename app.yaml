@@ -3,5 +3,9 @@ version: 1
 runtime: php
 api_version: 1
 handlers:
+- url: /projectplan.php
+  script: projectplan.php
+
 - url: /.*
   script: index.php
+
