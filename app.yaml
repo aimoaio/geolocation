@@ -6,6 +6,9 @@ handlers:
 - url: /projectplan.php
   script: projectplan.php
 
+- url: /stylesheets
+  static_dir: stylesheets
+
 - url: /.*
   script: index.php
 
