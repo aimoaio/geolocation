@@ -1,0 +1,52 @@
+ html, body, #map-canvas {
+        height: 80%;
+        width: 70%;
+        margin: 0px;
+        padding: 0px
+      }
+      #panel {
+        position: absolute;
+        top: 64%;
+        margin-left: 290px;
+        z-index: 5;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+      }
+      
+      #latlng {
+        width: 225px;
+        margin-bottom: 5px;
+        }
+        
+        h3{
+    color:red;
+}
+      
+
+@media screen and (max-device-width: 640px) {
+  html, body, #map-canvas {
+        width: 300px;
+        margin: 2px;
+        padding: 1px
+      }
+      #panel {
+        width: 400px;
+        position: absolute;
+        top: 64%;
+        margin-left: 100px;
+        z-index: 5;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+      }
+      
+     
+      
+      
+  }
+
+  
+  
+  
+}
