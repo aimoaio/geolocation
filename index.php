@@ -5,31 +5,12 @@
         <title>Prototype 1 </title>
         <meta name="prototype samples" content="prototype testing">
         <meta name="SeeMai" content="Geolocation Project">
+        <meta name="viewport" content="user-scalable=0, initial-scale=1.0">
 
-        <link rel="stylesheet" href="css/style.css?v=1.0">
+       
+        <link type="text/css" rel="stylesheet" href="/stylesheets/style.css" />
         <script src="js/scripts.js"></script>
-         <style>
-      html, body, #map-canvas {
-        height: 80%;
-        width: 70%;
-        margin: 0px;
-        padding: 0px
-      }
-      #panel {
-        position: absolute;
-        top: 20%;
-        margin-left: 100px;
-        z-index: 5;
-        background-color: #fff;
-        padding: 5px;
-        border: 1px solid #999;
-      }
-      
-      #latlng {
-        width: 225px;
-      }
-
-    </style>
+     
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
    <script>
 var geocoder;
@@ -50,6 +31,12 @@ function initialize() {
 function codeLatLng() {
   var input = document.getElementById('latlng').value;
   var address2 = document.getElementById('address');
+  
+  var formatted = document.getElementById('formataddress');
+  var formatted2 =  document.getElementById('formataddress2');
+  var formatted3 =  document.getElementById('formataddress3');
+  
+  
   var latlngStr = input.split(',', 2);
   var lat = parseFloat(latlngStr[0]);
   var lng = parseFloat(latlngStr[1]);
@@ -62,9 +49,43 @@ function codeLatLng() {
             position: latlng,
             map: map
         });
-        infowindow.setContent(results[1].formatted_address);
+        infowindow.setContent(results[0].formatted_address);
         address2 = results[0].formatted_address;
         address.innerHTML=address2;
+        
+        var country;
+        var postcode;
+        var locality;
+        var street;
+        var state;
+
+        for (i=0;i<results[0].address_components.length;i++){
+            for (j=0;j<results[0].address_components[i].types.length;j++){
+               if(results[0].address_components[i].types[j]=="country"){
+                  country = results[0].address_components[i].long_name;
+                }
+                else if(results[0].address_components[i].types[j]=="postal_code"){
+                  postcode = results[0].address_components[i].long_name;
+                  }
+                  else if(results[0].address_components[i].types[j]=="sublocality" || results[0].address_components[i].types[j]=="locality"){
+                  locality = results[0].address_components[i].long_name;
+                  }
+                   else if(results[0].address_components[i].types[j]=="route"){
+                street = results[0].address_components[i].long_name;
+                  } else if(results[0].address_components[i].types[j]=="administrative_area_level_1" || results[0].address_components[i].types[j]=="administrative_area_level_2"){
+                state = results[0].address_components[i].long_name;
+                  }
+                  
+        }
+        }
+       
+        geocodeterms.innerHTML="Street: " + street.toString() +
+        "<br>Town/City: " + locality.toString() +
+        "<br>County/State: " + state.toString() +
+        "<br> Country: " + country.toString() +
+        "<br> Postcode: " + postcode.toString();
+       
+        
         infowindow.open(map, marker);
       } else {
         alert('No results found');
@@ -110,14 +131,19 @@ google.maps.event.addDomListener(window, 'load', initialize);
     
     </script>
     <p> <h3>Prototype 2 </h3> </p>
-     <div id="panel">
+
       <input id="latlng" type="text" value="40.714224,-73.961452">
       <input type="button" value="Reverse Geocode" onclick="codeLatLng()">
       
-    </div>
+
+    
     <div id="map-canvas"></div>
     <p> Your address is: </p>
     <p id="address"> Address </p>
+   
+    <p id="geocodeterms"> </p>
+    
+    <a href="projectplan.php">Project Plan </a>
 
     </body>
     
