@@ -144,6 +144,8 @@ google.maps.event.addDomListener(window, 'load', initialize);
     <p id="geocodeterms"> </p>
     
     <a href="projectplan.php">Project Plan </a>
+    <br>
+    <a href="web/viewer.html"> Viewer </a>
 
     </body>
     
